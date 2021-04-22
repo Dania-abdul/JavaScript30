@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Reduce()</title>
+</head>
+<body>
+    <h1>Reduce()</h1>
+
+    <h3>Counting sum with Reduce</h3>
+    <p>Test with the inspector</p>
+    <p>// Array for testing</p>
+    <pre>numbers = [3, 4, 5]</pre>
+    <!--//--------//-->
+    <p>/**
+        * Counts array values using a for loop
+        */
+    </p>
+    <pre>
+        <code>
+            const forCount = numbersArr => {
+                let sum = 0
+                for (i = 0; i < numbersArr.length; i++) {
+                sum += numbersArr[i]
+                }
+                return sum
+            }
+
+            /**
+            * Run and log the output
+            */
+
+            const total = forCount(numbers)
+            console.log("\nforCount total:", total, "\n\n")
+        </code>
+    </pre>
+    <!--//--------//-->
+    <p>
+    /**
+    * Beginner reduce for couting values
+    */
+    </p>
+    <pre>
+        <code>
+            console.log('START reducing')
+            const reduceLog = numbers.reduce((accumulator, current, index) => { 
+              console.log(`start loop ${index} | accumulator is:`, accumulator)
+              console.log(`add accumulator + current (${accumulator} + ${current})`)
+              return accumulator + current
+            }, 0)
+            
+            // Log the output
+            console.log('FINISHED - reduceLog total:', reduceLog, "\n\n")
+        </code>
+    </pre>
+    <!--//--------//-->
+    <p>
+    /**
+    * Advanced reduce for counting values
+    */
+    </p>
+    <pre>
+        <code>
+            const reduceCount = numbers.reduce((acc, cur) => acc + cur)
+
+            // Log the output
+            console.log('reduceCount total:', reduceCount, "\n\n")
+        </code>
+    </pre>
+
+
+    <!--//--------//-->
+    <h3>Counting occurrence of numbers with Reduce</h3>
+    <p>Test with the inspector</p>
+    <p>// Many numbers for counting occurrences</p>
+    <pre>const manyNumbers = [1, 1, 2, 3, 3, 3, 4, 4, 5, 5, 5, 5, 5, 6, 7, 7, 7, 7]</pre>
+
+    <!--//--------//-->
+    <p>/**
+        * Beginner Count the occurrences of numbers 
+        */
+    </p>
+    <pre>
+        <code>
+            const reduceOccurrencesBeginner = manyNumbers.reduce((accumulator, current, index) => {
+                console.log(`loop ${index}`)
+                if (accumulator[current]) {
+                  console.log(`${current} exists. Incrementing count from ${accumulator[current]} to ${accumulator[current] + 1}`)
+                  accumulator[current]++
+                } else {
+                  console.log(`${current} does not exist. Setting ${current}`)
+                  accumulator[current] = 1
+                }
+                return accumulator
+              }, {})
+              
+              // Log the output
+              console.log("\nreduceOccurrencesBeginner:", reduceOccurrencesBeginner, "\n\n")
+              
+        </code>
+    </pre>
+    <!--//--------//-->
+
+    <p>/**
+        * Count the occurrences of numbers
+        */
+    </p>
+    <pre>
+        <code>
+            const reduceOccurrences = manyNumbers.reduce((acc, cur) => {
+                acc[cur] ? acc[cur]++ : acc[cur] = 1
+                return acc
+              }, {}) 
+        </code>
+    </pre>
+    <!--//--------//-->
+
+    <!--//--------//-->
+    <h3>Reverse this String with Reduce</h3>
+    <p>Test with the inspector</p>
+    <p>// String for testing</p>
+    <pre>const example = "In case I don't see you, good afternoon, good evening and good night"</pre>
+
+    <!--//--------//-->
+    <p>/**
+        * Beginner Reverses a string using reduce
+        */
+    </p>
+    <pre>
+        <code>
+            const reduceReverseBeginner = str => {
+                // Convert the string to an array
+                const letters = str.split('')
+              
+                // Reduce the array
+                return letters.reduceRight((newSentence, letter, index) => {
+                  console.log(`Adding letter "${letter}" from index: ${index}`)
+                  return newSentence += letter
+                }, '')
+              }
+        </code>
+    </pre>
+
+
+
+
+
+    <script>
+        const numbers = [3,4,5];
+        //--------//
+        /**
+         * Counts array values using a for loop
+        */
+        const forCount = numbersArr => {
+        let sum = 0
+        for (i = 0; i < numbersArr.length; i++) {
+            sum += numbersArr[i]
+        }
+        return sum
+        }
+
+        const total = forCount(numbers)
+        console.log("\nforCount total:", total, "\n\n")
+
+        //--------//
+        /**
+         * Beginner reduce for couting values
+        */
+        console.log('START reducing')
+        const reduceLog = numbers.reduce((accumulator, current, index) => { 
+        console.log(`start loop ${index} | accumulator is:`, accumulator)
+        console.log(`add accumulator + current (${accumulator} + ${current})`)
+        return accumulator + current
+        }, 0)
+        console.log('FINISHED - reduceLog total:', reduceLog, "\n\n")
+        
+        //--------//
+        /**
+         * Advanced reduce for counting values
+         */
+         const reduceCount = numbers.reduce((acc, cur) => acc + cur)
+
+        // Log the output
+        console.log('reduceCount total:', reduceCount, "\n\n")
+
+        //-----------------------------------------------------------------------------------------//
+        // Many numbers for counting occurrences
+        const manyNumbers = [1, 1, 2, 3, 3, 3, 4, 4, 5, 5, 5, 5, 5, 6, 7, 7, 7, 7];
+
+        /**
+         * Count the occurrences of numbers
+         */
+        const reduceOccurrences = manyNumbers.reduce((acc, cur) => {
+            acc[cur] ? acc[cur]++ : acc[cur] = 1
+            return acc
+        }, {})
+
+        // Log the output
+        console.log("reduceOccurrences:", reduceOccurrences, "\n\n")
+
+        //--------//
+
+        /**
+         * Count the occurrences of numbers (beginner)
+         */
+        const reduceOccurrencesBeginner = manyNumbers.reduce((accumulator, current, index) => {
+        console.log(`loop ${index}`) 
+
+        if (accumulator[current]) {
+            console.log(`${current} exists. Incrementing count from ${accumulator[current]} to ${accumulator[current] + 1}`)
+            accumulator[current]++
+        } else {
+            console.log(`${current} does not exist. Setting ${current}`)
+            accumulator[current] = 1
+        }
+        return accumulator
+        }, {})
+
+        // Log the output
+        console.table(reduceOccurrencesBeginner)
+        //-----------------------------------------------------------------------------------------//
+        
+        // String for testing
+        const example = "In case I don't see you, good afternoon, good evening and good night"
+        
+        /**
+         * Reverses a string using reduce (beginner)
+         */
+        const reduceReverseBeginner = str => {
+        // Convert the string to an array
+        const letters = str.split('')
+
+            // Reduce the array
+            return letters.reduceRight((newSentence, letter, index) => {
+                console.log(`Adding letter "${letter}" from index: ${index}`)
+                return newSentence += letter
+            }, '')
+        }
+        // Run and log the output - Uncomment to run
+        // const reduceReverseBeginnerOutput = reduceReverseBeginner(example)
+        // console.log("reduceReverseBeginner:", reduceReverseBeginnerOutput, "\n\n")
+    </script>
+</body>
+</html>
